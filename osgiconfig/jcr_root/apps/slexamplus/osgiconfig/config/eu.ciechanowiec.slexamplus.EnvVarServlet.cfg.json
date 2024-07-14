@@ -1,0 +1,3 @@
+{
+  "env-variable": "$[env:ENVUS_VARIABLUS;type=String;default=unknown]"
+}

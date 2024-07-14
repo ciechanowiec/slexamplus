@@ -1,0 +1,56 @@
+<node>
+    <name>character</name>
+
+    <!--
+        optional, defaults to nt:unstructured
+    -->
+    <primaryNodeType>nt:unstructured</primaryNodeType>
+
+    <!--
+        Optional properties for the node. Each <property> element defines
+        a single property of the node. The element may be repeated.
+    -->
+    <property>
+        <!--
+            required property name
+        -->
+        <name>name</name>
+
+        <!--
+            value of the property.
+            For multi-value properties, the values are defined by multiple
+            <value> elements nested inside a <values> element instead of a
+            single <value> element
+        -->
+        <value>Gretel</value>
+
+        <!--
+            Optional type of the property value, defaults to String.
+            This must be one of the property type strings defined in the
+            JCR PropertyType interface.
+        -->
+        <type>String</type>
+    </property>
+
+    <!--
+        Additional child nodes. May be further nested.
+    -->
+    <node>
+        <name>metadata</name>
+        <property>
+            <name>siblings</name>
+            <values>
+                <value>Hansel</value>
+            </values>
+            <type>String</type>
+        </property>
+        <property>
+            <name>attributes</name>
+            <values>
+                <value>clever</value>
+                <value>brave</value>
+            </values>
+            <type>String</type>
+        </property>
+    </node>
+</node>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="oak:QueryIndexDefinition"
+          async="async"
+          compatVersion="{Long}2"
+          reindex="{Boolean}true"
+          seed="{Long}1839882587298939304"
+          type="lucene">
+    <indexRules jcr:primaryType="nt:unstructured">
+        <sling:Folder
+                jcr:primaryType="nt:unstructured"
+                includePropertyTypes="all">
+            <properties jcr:primaryType="nt:unstructured">
+                <chatID
+                        jcr:primaryType="nt:unstructured"
+                        name="chatID"
+                        propertyIndex="{Boolean}true"/>
+            </properties>
+        </sling:Folder>
+    </indexRules>
+</jcr:root>
