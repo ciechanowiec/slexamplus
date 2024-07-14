@@ -40,6 +40,7 @@ _Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an examp
 .. Integrating static code analysis and test enforcement into the build process.
 .. Conducting unit testing, including tests against a real in-memory JCR.
 . JCR indexing.
+. Repository initialization.
 . Deploying OSGi configurations.
 . Deploying static content to JCR via a bundle.
 
