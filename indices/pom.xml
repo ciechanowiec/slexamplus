@@ -46,4 +46,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>installPackageSeparately</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.wcm.maven.plugins</groupId>
+                        <artifactId>wcmio-content-package-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>install-all</id>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
