@@ -1,5 +1,6 @@
 package eu.ciechanowiec.slexamplus;
 
+import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import lombok.SneakyThrows;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;

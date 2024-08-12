@@ -1,5 +1,6 @@
 package eu.ciechanowiec.slexamplus;
 
+import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import lombok.SneakyThrows;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.sling.api.resource.Resource;

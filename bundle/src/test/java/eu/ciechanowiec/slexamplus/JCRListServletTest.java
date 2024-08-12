@@ -1,5 +1,6 @@
 package eu.ciechanowiec.slexamplus;
 
+import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import lombok.SneakyThrows;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -9,13 +10,6 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.stubbing.Answer;
-
-import javax.jcr.Session;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.spy;
@@ -46,15 +40,5 @@ class JCRListServletTest extends TestEnvironment {
                                 /oak:index""";
         exportJCRtoXML();
         assertEquals(expectedString, actualString);
-    }
-
-    @SneakyThrows
-    private void exportJCRtoXML() {
-        @SuppressWarnings("resource")
-        ResourceResolver resolver = resourceAccess.acquireAccess();
-        Session session = Optional.ofNullable(resolver.adaptTo(Session.class)).orElseThrow();
-        Path path = Paths.get("repo.xml");
-        OutputStream out = Files.newOutputStream(path);
-        session.exportDocumentView("/", out, true, false);
     }
 }
