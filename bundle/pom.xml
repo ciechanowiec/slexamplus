@@ -100,11 +100,6 @@
             <artifactId>oak-jackrabbit-api</artifactId>
         </dependency>
         <dependency>
-            <!--  Required by jakarta.json:jakarta.json-api, although not listed in Import-Package  -->
-            <groupId>org.eclipse.parsson</groupId>
-            <artifactId>parsson</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>

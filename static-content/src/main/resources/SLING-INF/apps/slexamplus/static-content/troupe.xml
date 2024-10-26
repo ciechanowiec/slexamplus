@@ -1,0 +1,11 @@
+<node>
+    <name>troupe</name>
+    <primaryNodeType>sling:OrderedFolder</primaryNodeType>
+    <property>
+        <name>troupeRules</name>
+        <value>
+            You are a troupe of actors. Be ready to play your roles.
+        </value>
+        <type>String</type>
+    </property>
+</node>
