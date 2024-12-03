@@ -30,7 +30,7 @@ class JCRListServletTest extends TestEnvironment {
         MockSlingHttpServletRequest request = spy(context.request());
         MockSlingHttpServletResponse response = context.response();
         when(request.getResourceResolver()).thenAnswer(
-                (Answer<ResourceResolver>) invocation -> resourceAccess.acquireAccess()
+                (Answer<ResourceResolver>) invocation -> fullResourceAccess.acquireAccess()
         );
         jcrListServlet.doGet(request, response);
         String actualString = response.getOutputAsString();
