@@ -71,7 +71,7 @@ services:
       DOMAIN: ciechanowiec.hopto.org
       EMAIL: herman@ciechanowiec.eu
       IS_STAGING_ENV: true
-    image: ciechanowiec/rocket-nginx:14.0.2
+    image: ciechanowiec/rocket-nginx:15.0.0
     container_name: rocket-nginx
     hostname: rocket-nginx
     networks:
