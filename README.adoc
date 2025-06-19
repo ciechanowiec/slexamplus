@@ -39,6 +39,7 @@ _Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an examp
 .. Using Sling Models.
 .. Integrating static code analysis and test enforcement into the build process.
 .. Conducting unit testing, including tests against a real in-memory JCR.
+.. Registering JMX MBeans.
 . Rendering HTML pages with HTL and Sling Models.
 . JCR indexing.
 . Repository initialization.
