@@ -8,6 +8,7 @@ import org.osgi.service.component.propertytypes.ServiceRanking;
         immediate = true
 )
 @ServiceRanking(Integer.MIN_VALUE)
+@SuppressWarnings("TypeName")
 public class AAProvider implements StringProvider {
 
     @Override

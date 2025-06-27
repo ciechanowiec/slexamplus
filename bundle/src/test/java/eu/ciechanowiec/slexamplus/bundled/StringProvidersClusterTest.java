@@ -15,6 +15,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SlingContextExtension.class)
+@SuppressWarnings("TypeName")
 class StringProvidersClusterTest {
 
     private final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);

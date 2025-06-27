@@ -14,7 +14,6 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SlingContextExtension.class)
-@SuppressWarnings("PMD.CloseResource")
 class HelloUniverseServletTest {
 
     private final SlingContext context = new SlingContext(ResourceResolverType.RESOURCERESOLVER_MOCK);

@@ -8,6 +8,7 @@ import org.osgi.service.component.propertytypes.ServiceRanking;
         immediate = true
 )
 @ServiceRanking(Integer.MAX_VALUE)
+@SuppressWarnings("TypeName")
 public class BBProvider implements StringProvider {
 
     @Override

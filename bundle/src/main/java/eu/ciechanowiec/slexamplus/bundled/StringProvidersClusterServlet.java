@@ -19,7 +19,7 @@ import java.io.Writer;
         immediate = true
 )
 @SlingServletPaths("/clustered-string")
-@SuppressWarnings("squid:S1948")
+@SuppressWarnings({"squid:S1948", "TypeName"})
 @Slf4j
 public class StringProvidersClusterServlet extends SlingSafeMethodsServlet {
 

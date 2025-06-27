@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 )
 @ToString
 @Slf4j
+@SuppressWarnings("TypeName")
 public class StringProvidersCluster {
 
     @Reference(

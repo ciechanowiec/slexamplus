@@ -20,6 +20,7 @@ import org.osgi.service.metatype.annotations.Designate;
 )
 @ToString
 @Slf4j
+@SuppressWarnings("TypeName")
 public class FactoryProvider implements StringProvider {
 
     private String providedString;

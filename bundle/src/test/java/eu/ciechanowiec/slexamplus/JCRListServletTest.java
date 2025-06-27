@@ -16,7 +16,6 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SlingContextExtension.class)
-@SuppressWarnings("PMD.CloseResource")
 class JCRListServletTest extends TestEnvironment {
 
     JCRListServletTest() {
