@@ -1,0 +1,7 @@
+<slexamplus = 'https://github.com/ciechanowiec/slexamplus'>
+
+[slexamplus:CustomNodeType] > nt:base, mix:created, mix:lastModified, mix:referenceable
+orderable
+- * (UNDEFINED) multiple
+- * (UNDEFINED)
++ * (nt:base)
