@@ -1,5 +1,6 @@
 package eu.ciechanowiec.slexamplus;
 
+import eu.ciechanowiec.slexamplus.models.RecordModel;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;

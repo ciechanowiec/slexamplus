@@ -1,4 +1,4 @@
-package eu.ciechanowiec.slexamplus;
+package eu.ciechanowiec.slexamplus.models;
 
 import org.apache.jackrabbit.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -12,7 +12,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
         adaptables = {Resource.class, SlingHttpServletRequest.class},
         defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED
 )
-record RecordModel(
+public record RecordModel(
         @ValueMapValue(name = JcrConstants.JCR_PRIMARYTYPE)
         @Default(values = JcrConstants.NT_UNSTRUCTURED)
         String primaryType,

@@ -1,5 +1,6 @@
 package eu.ciechanowiec.slexamplus;
 
+import eu.ciechanowiec.slexamplus.models.RecordModel;
 import jakarta.ws.rs.core.MediaType;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;

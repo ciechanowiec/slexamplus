@@ -43,8 +43,25 @@
                     </filters>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>htl-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.ciechanowiec</groupId>
+            <artifactId>slexamplus.bundle</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.scripting.sightly.runtime</artifactId>
+        </dependency>
+    </dependencies>
 
     <profiles>
         <profile>
