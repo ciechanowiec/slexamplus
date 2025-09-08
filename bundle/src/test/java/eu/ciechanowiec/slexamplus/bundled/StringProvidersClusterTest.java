@@ -3,8 +3,8 @@ package eu.ciechanowiec.slexamplus.bundled;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.junit5.SlingContext;
 import org.apache.sling.testing.mock.sling.junit5.SlingContextExtension;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,8 +35,8 @@ class StringProvidersClusterTest {
 
     @Test
     void mustMatchStrings() {
-        MockSlingHttpServletRequest request = context.request();
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = context.jakartaRequest();
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         servlet.doGet(request, response);
         String actualString = response.getOutputAsString();
         String expectedString = "AA***BB***FACTORIUS_1***FACTORIUS_2";

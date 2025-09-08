@@ -3,8 +3,8 @@ package eu.ciechanowiec.slexamplus;
 import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import lombok.SneakyThrows;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,8 +20,8 @@ class DedicatedRRServletTest extends TestEnvironment {
     void mustDoGet() {
         context.registerInjectActivateService(Counter.class);
         DedicatedRRServlet servlet = context.registerInjectActivateService(DedicatedRRServlet.class);
-        MockSlingHttpServletRequest request = context.request();
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = context.jakartaRequest();
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         servlet.doGet(request, response);
         response.reset();
         servlet.doGet(request, response);

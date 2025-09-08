@@ -5,8 +5,8 @@ import lombok.SneakyThrows;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.junit5.SlingContextExtension;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.stubbing.Answer;
@@ -26,8 +26,8 @@ class JCRListServletTest extends TestEnvironment {
     @Test
     void mustListJCRRoot() {
         JCRListServlet jcrListServlet = context.registerInjectActivateService(JCRListServlet.class);
-        MockSlingHttpServletRequest request = spy(context.request());
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = spy(context.jakartaRequest());
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         when(request.getResourceResolver()).thenAnswer(
                 (Answer<ResourceResolver>) invocation -> fullResourceAccess.acquireAccess()
         );

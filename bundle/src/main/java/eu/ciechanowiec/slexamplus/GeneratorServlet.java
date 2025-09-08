@@ -4,12 +4,12 @@ import eu.ciechanowiec.sling.rocket.commons.ResourceAccess;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.jackrabbit.JcrConstants;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceUtil;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Activate;
@@ -18,7 +18,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
@@ -33,7 +33,7 @@ import java.util.stream.IntStream;
 @SlingServletPaths("/generator")
 @SuppressWarnings("squid:S1948")
 @Slf4j
-public class GeneratorServlet extends SlingSafeMethodsServlet {
+public class GeneratorServlet extends SlingJakartaSafeMethodsServlet {
 
     private final ResourceAccess resourceAccess;
 
@@ -47,7 +47,8 @@ public class GeneratorServlet extends SlingSafeMethodsServlet {
 
     @Override
     @SuppressWarnings({"NullableProblems", "OverlyBroadThrowsClause"})
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    protected void doGet(SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response)
+        throws IOException {
         try (ResourceResolver resourceResolver = resourceAccess.acquireAccess()) {
             Resource resource = ResourceUtil.getOrCreateResource(
                     resourceResolver, "/content/generated",

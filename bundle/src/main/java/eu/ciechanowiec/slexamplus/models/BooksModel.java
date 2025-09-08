@@ -1,10 +1,10 @@
 package eu.ciechanowiec.slexamplus.models;
 
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 
-@Model(adaptables = {Resource.class, SlingHttpServletRequest.class})
+@Model(adaptables = {Resource.class, SlingJakartaHttpServletRequest.class})
 public class BooksModel {
 
     public String getNames() {

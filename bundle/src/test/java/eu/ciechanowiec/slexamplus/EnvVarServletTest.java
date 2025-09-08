@@ -3,8 +3,8 @@ package eu.ciechanowiec.slexamplus;
 import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import lombok.SneakyThrows;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -23,8 +23,8 @@ class EnvVarServletTest extends TestEnvironment {
         EnvVarServlet envVarServlet = context.registerInjectActivateService(
                 EnvVarServlet.class, Map.of("env-variable", "envus-variablus")
         );
-        MockSlingHttpServletRequest request = context.request();
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = context.jakartaRequest();
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         envVarServlet.doGet(request, response);
         String outputAsString = response.getOutputAsString();
         assertEquals("Environment variable is set to 'envus-variablus'", outputAsString);

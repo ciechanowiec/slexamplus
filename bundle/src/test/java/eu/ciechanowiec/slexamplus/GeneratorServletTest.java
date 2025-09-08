@@ -6,8 +6,8 @@ import org.apache.commons.collections4.IterableUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -25,8 +25,8 @@ class GeneratorServletTest extends TestEnvironment {
     @Test
     void mustGenerate() {
         GeneratorServlet generatorServlet = context.registerInjectActivateService(GeneratorServlet.class);
-        MockSlingHttpServletRequest request = context.request();
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = context.jakartaRequest();
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         generatorServlet.doGet(request, response);
         @SuppressWarnings("resource")
         ResourceResolver resourceResolver = context.resourceResolver();

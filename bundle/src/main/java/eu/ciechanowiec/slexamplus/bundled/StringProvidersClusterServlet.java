@@ -2,16 +2,16 @@ package eu.ciechanowiec.slexamplus.bundled;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.Writer;
 
 @Component(
@@ -21,7 +21,7 @@ import java.io.Writer;
 @SlingServletPaths("/clustered-string")
 @SuppressWarnings({"squid:S1948", "TypeName"})
 @Slf4j
-public class StringProvidersClusterServlet extends SlingSafeMethodsServlet {
+public class StringProvidersClusterServlet extends SlingJakartaSafeMethodsServlet {
 
     private final StringProvidersCluster cluster;
 
@@ -36,7 +36,8 @@ public class StringProvidersClusterServlet extends SlingSafeMethodsServlet {
     @SneakyThrows
     @Override
     protected void doGet(
-            @SuppressWarnings("NullableProblems") SlingHttpServletRequest request, SlingHttpServletResponse response
+            @SuppressWarnings("NullableProblems")
+            SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
     ) {
         String combinedStrings = cluster.combinedStrings();
         log.info("Will provide these combined strings: {}", combinedStrings);

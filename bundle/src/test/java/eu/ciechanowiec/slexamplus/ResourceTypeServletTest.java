@@ -2,8 +2,8 @@ package eu.ciechanowiec.slexamplus;
 
 import eu.ciechanowiec.sling.rocket.test.TestEnvironment;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingJakartaHttpServletResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -25,8 +25,8 @@ class ResourceTypeServletTest extends TestEnvironment {
                .resource("/content/simple-page", Map.of(propertyName, expectedText))
                .commit();
         context.currentResource("/content/simple-page");
-        MockSlingHttpServletRequest request = context.request();
-        MockSlingHttpServletResponse response = context.response();
+        MockSlingJakartaHttpServletRequest request = context.jakartaRequest();
+        MockSlingJakartaHttpServletResponse response = context.jakartaResponse();
         resourceTypeServlet.doGet(request, response);
         String outputAsString = response.getOutputAsString();
         boolean hasRed = outputAsString.contains("red");

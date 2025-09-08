@@ -2,10 +2,10 @@ package eu.ciechanowiec.slexamplus;
 
 import jakarta.ws.rs.core.MediaType;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
 import org.apache.sling.api.request.RequestPathInfo;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -13,7 +13,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -25,7 +25,7 @@ import java.io.Writer;
 @SlingServletPaths("/hello-universe")
 @SuppressWarnings("squid:S1948")
 @Slf4j
-public class HelloUniverseServlet extends SlingSafeMethodsServlet {
+public class HelloUniverseServlet extends SlingJakartaSafeMethodsServlet {
 
     private final BasicHTMLPage basicHTMLPage;
 
@@ -39,7 +39,8 @@ public class HelloUniverseServlet extends SlingSafeMethodsServlet {
     }
 
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    protected void doGet(SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response)
+        throws IOException {
         RequestPathInfo requestPathInfo = request.getRequestPathInfo();
         log.info("Received request: {}", requestPathInfo);
         String html = basicHTMLPage.producePage();

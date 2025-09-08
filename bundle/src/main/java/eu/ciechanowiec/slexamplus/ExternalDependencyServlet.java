@@ -3,14 +3,14 @@ package eu.ciechanowiec.slexamplus;
 import eu.ciechanowiec.conditional.Conditional;
 import jakarta.ws.rs.core.MediaType;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
@@ -23,11 +23,12 @@ import java.util.Objects;
 @SlingServletPaths("/external-dependency")
 @SuppressWarnings("squid:S1948")
 @Slf4j
-public class ExternalDependencyServlet extends SlingSafeMethodsServlet {
+public class ExternalDependencyServlet extends SlingJakartaSafeMethodsServlet {
 
     @Override
     protected void doGet(
-            @SuppressWarnings("NullableProblems") SlingHttpServletRequest request, SlingHttpServletResponse response
+            @SuppressWarnings("NullableProblems")
+            SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
     ) throws IOException {
         String originalText = "I'm the text provided with the use of an external library";
         String extractedText = Conditional.conditional(true)

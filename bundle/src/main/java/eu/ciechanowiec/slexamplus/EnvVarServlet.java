@@ -1,9 +1,9 @@
 package eu.ciechanowiec.slexamplus;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -12,7 +12,7 @@ import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -28,7 +28,7 @@ import java.io.Writer;
 @Designate(
         ocd = EnvVarServletConfig.class
 )
-public class EnvVarServlet extends SlingSafeMethodsServlet {
+public class EnvVarServlet extends SlingJakartaSafeMethodsServlet {
 
     private String variable;
 
@@ -45,7 +45,8 @@ public class EnvVarServlet extends SlingSafeMethodsServlet {
 
     @Override
     @SuppressWarnings("NullableProblems")
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    protected void doGet(SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response)
+        throws IOException {
         String message = String.format("Environment variable is set to '%s'", variable);
         try (Writer responseWriter = response.getWriter()) {
             responseWriter.write(message);

@@ -3,16 +3,16 @@ package eu.ciechanowiec.slexamplus;
 import eu.ciechanowiec.slexamplus.models.RecordModel;
 import jakarta.ws.rs.core.MediaType;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.SlingJakartaHttpServletRequest;
+import org.apache.sling.api.SlingJakartaHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.api.servlets.SlingJakartaSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Optional;
@@ -25,10 +25,11 @@ import java.util.Optional;
 @SlingServletPaths("/sling-model")
 @SuppressWarnings("squid:S1948")
 @Slf4j
-public class SlingModelServlet extends SlingSafeMethodsServlet {
+public class SlingModelServlet extends SlingJakartaSafeMethodsServlet {
 
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    protected void doGet(SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response)
+        throws IOException {
         try (ResourceResolver resourceResolver = request.getResourceResolver();
              Writer responseWriter = response.getWriter()) {
             Resource resource = Optional.ofNullable(resourceResolver.getResource("/apps/slexamplus/application"))
