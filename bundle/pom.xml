@@ -160,13 +160,6 @@
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
         <dependency>
-            <!-- Experimental and intermediate library for mocking
-                 final types, enums, final and static methods.
-                 Will be superseded by automatic usage in a future version -->
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.testing.sling-mock.junit5</artifactId>
         </dependency>
