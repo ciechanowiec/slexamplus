@@ -47,6 +47,26 @@ _Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an examp
 . Deploying static content to JCR via a bundle.
 . Registering custom node types with the use of a https://developer.adobe.com/experience-manager/reference-materials/spec/jcr/2.0/25_Appendix.html[compact node type definition (CND) file].
 
+== How to Use
+
+Start the Sling Rocket framework:
+[source,bash]
+----
+docker compose up --detach
+----
+
+Deploy _Slexamplus_ into the Sling Rocket framework:
+[source,bash]
+----
+mvn clean install -P installAll
+----
+
+Deploy only the `bundle` module of _Slexamplus_ into the Sling Rocket framework:
+[source,bash]
+----
+mvn clean install -P installBundle
+----
+
 == License
 The program is subject to MIT No Attribution License
 
