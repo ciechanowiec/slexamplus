@@ -58,8 +58,20 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>eu.ciechanowiec</groupId>
+            <artifactId>sling.rocket.commons</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.scripting.sightly.runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.scripting.sightly.compiler</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.scripting.sightly.compiler.java</artifactId>
         </dependency>
     </dependencies>
 

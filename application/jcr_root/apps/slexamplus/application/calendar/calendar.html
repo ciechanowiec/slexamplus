@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+        :root {
+            --primary-bg-color: #f4f7f6;
+            --card-bg-color: #ffffff;
+            --text-color: #333;
+            --header-color: #0056b3;
+            --other-month-color: #adb5bd;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .calendar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .calendar-year-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--header-color);
+            margin-bottom: 2rem;
+        }
+
+        .months-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .month-card {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .month-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            text-transform: capitalize; /* Makes "OCTOBER" look like "October" */
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* The core of the layout: 7 columns */
+            gap: 4px;
+        }
+
+        .grid-header, .grid-cell {
+            text-align: center;
+            padding: 0.5rem;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .grid-header {
+            font-weight: 500;
+            color: var(--header-color);
+        }
+
+        .grid-cell {
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .grid-cell:not(.other-month):hover {
+            background-color: #e9ecef;
+        }
+
+        .other-month {
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+<div data-sly-use.calendar="eu.ciechanowiec.sling.rocket.calendar.CalendarNode" class="calendar-container">
+
+    <div data-sly-list.year="${calendar.years}">
+        <h1 class="calendar-year-title">${year.year.value}</h1>
+
+        <div class="months-wrapper">
+            <div data-sly-list.month="${year.months}" class="month-card">
+
+                <h2 class="month-title">${month.month.month.name}</h2>
+
+                <div class="calendar-grid">
+                    <div class="grid-header">Mon</div>
+                    <div class="grid-header">Tue</div>
+                    <div class="grid-header">Wed</div>
+                    <div class="grid-header">Thu</div>
+                    <div class="grid-header">Fri</div>
+                    <div class="grid-header">Sat</div>
+                    <div class="grid-header">Sun</div>
+
+                    <sly data-sly-test="${month.days.size > 0}">
+                        <sly data-sly-set.firstDayNode="${month.days[0]}"></sly>
+                        <sly data-sly-set.startOffset="${firstDayNode.day.dayOfWeek.value}"></sly>
+                    </sly>
+
+                    <sly data-sly-list.pad="${[1, 2, 3, 4, 5, 6]}">
+                        <div class="grid-cell other-month" data-sly-test="${padList.count < startOffset}"></div>
+                    </sly>
+
+                    <sly data-sly-list.dayNode="${month.days}">
+                        <div class="grid-cell">${dayNode.day.dayOfMonth}</div>
+                    </sly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

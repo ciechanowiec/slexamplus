@@ -1,6 +1,7 @@
 package eu.ciechanowiec.slexamplus;
 
 import eu.ciechanowiec.sling.rocket.commons.ResourceAccess;
+import jakarta.servlet.Servlet;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.jackrabbit.JcrConstants;
@@ -18,7 +19,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
-import jakarta.servlet.Servlet;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;

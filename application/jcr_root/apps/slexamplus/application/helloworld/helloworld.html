@@ -1,5 +1,13 @@
 <h2>Hello, Universe!</h2>
-<h4>The text below comes from a Sling Model:</h4>
+<h4>Content below comes from a Sling Model:</h4>
 <div data-sly-use.book="eu.ciechanowiec.slexamplus.models.BooksModel">
-    ${book.names}
+    <p>Primary type: ${book.primaryType}</p>
+    <p>Custom property: ${book.customProperty}</p>
+    <p>Non-existent property: ${book.nonExistentProperty}</p>
+    <p>Request: ${book.request}</p>
+    <p>Resource: ${book.resource}</p>
+    <p>User: ${book.request.remoteUser}</p>
+    <p>Request params: ${book.request.requestParameterMap}</p>
+    <p>Output from a separate OSGi service: ${book.osgiService.combinedStrings}</p>
+    <p>Text from the model: ${book.names}</p>
 </div>

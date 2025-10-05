@@ -44,7 +44,7 @@ public class StringProvidersCluster {
         log.info("Configured {}", this);
     }
 
-    String combinedStrings() {
+    public String combinedStrings() {
         return stringProviders.stream()
                               .map(StringProvider::provide)
                               .sorted()
