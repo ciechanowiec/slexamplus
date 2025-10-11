@@ -45,6 +45,11 @@
             <property name="minimum" value="2"/>
         </properties>
     </rule>
+    <rule ref="category/java/codestyle.xml/TypeParameterNamingConventions">
+        <properties>
+            <property name="typeParameterNamePattern" value="([A-Z]|AdapterType)" />
+        </properties>
+    </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
         <exclude name="AvoidDollarSigns"/>
@@ -68,6 +73,11 @@
         <properties>
             <property name="classReportLevel" value="80"/>
             <property name="methodReportLevel" value="8"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/ExcessiveImports">
+        <properties>
+            <property name="minimum" value="45"/>
         </properties>
     </rule>
     <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -115,7 +125,7 @@
     <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
         <properties>
             <property name="ignoreMagicNumbers"
-                      value="-0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-100,-1000,0,1,2,3,4,5,6,7,8,9,10,100,1000"/>
+                      value="-0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-50,-100,-1000,0,1,2,3,4,5,6,7,8,9,10,50,100,1000"/>
             <property name="ignoreExpressions" value="false"/>
         </properties>
     </rule>
@@ -132,6 +142,7 @@
         <exclude name="MissingSerialVersionUID"/> <!-- Disablement justification: https://github.com/projectlombok/lombok/wiki/WHY-NOT:-serialVersionUID -->
         <exclude name="NonSerializableClass"/>
         <exclude name="NonStaticInitializer"/>
+        <exclude name="ReplaceJavaUtilCalendar"/>
         <exclude name="UseProperClassLoader"/>
     </rule>
 
