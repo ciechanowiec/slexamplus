@@ -1,0 +1,18 @@
+/*
+  This uses CSS Flexbox to create a "sticky footer" layout.
+  - The body is set to be at least the full viewport height (100vh).
+  - It's a flex column, so children (header, main, footer) stack vertically.
+*/
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*
+  - The 'margin-top: auto;' tells the footer to push itself
+  - to the bottom of the flex container (the <body>).
+*/
+footer {
+  margin-top: auto;
+}

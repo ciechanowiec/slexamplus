@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<sly data-sly-include="/apps/slexamplus/application/ui/head/head.html"></sly>
+<body class="d-flex flex-column min-vh-100">
+<sly data-sly-include="/apps/slexamplus/application/ui/header/header.html"></sly>
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm mb-4"
+                 data-sly-resource="${@ path='/content/usergenerated', resourceType='slexamplus/application/components/usergenerated'}"></div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Write Content to JCR</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        This form will write a <code>message</code> property to the <code>/content/usergenerated</code>
+                        node in the JCR.
+                    </p>
+
+                    <form method="POST" action="/content/usergenerated" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label for="message_input" class="form-label">Your message:</label>
+                            <input type="text" class="form-control" id="message_input" name="./message"
+                                   placeholder="Enter some text..." required>
+                        </div>
+
+                        <input type="hidden" name="jcr:primaryType" value="nt:unstructured"/>
+
+                        <button type="submit" class="btn btn-primary">Submit to JCR</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+<sly data-sly-include="/apps/slexamplus/application/ui/footer/footer.html"></sly>
+<sly data-sly-include="/apps/slexamplus/application/ui/footerscripts/footerscripts.html"></sly>
+</body>
+</html>

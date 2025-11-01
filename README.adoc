@@ -47,6 +47,7 @@ _Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an examp
 . Deploying OSGi configurations.
 . Deploying static content to JCR via a bundle.
 . Registering custom node types with the use of a https://developer.adobe.com/experience-manager/reference-materials/spec/jcr/2.0/25_Appendix.html[compact node type definition (CND) file].
+. HTML form submission.
 
 == How to Use
 

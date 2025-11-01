@@ -1,0 +1,14 @@
+<div class="card-header bg-secondary text-white">
+    <h3 class="h5 mb-0">Current State in JCR</h3>
+</div>
+<div class="card-body">
+    <p class="card-text">
+        Current message at <code>${resource.path}</code>:
+    </p>
+    <p class="lead" data-sly-test="${properties.message}">
+        <strong>"${properties.message}"</strong>
+    </p>
+    <p class="text-muted" data-sly-test="${!properties.message}">
+        [No message set yet]
+    </p>
+</div>
