@@ -3,13 +3,21 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My Sling Rocket App</a>
 
-            <div class="d-flex align-items-center">
-                <span class="navbar-text text-white me-3">
-                    <i class="fas fa-user me-2"></i>${request.remoteUser}
-                </span>
-                <form action="/api/logout" method="post">
-                    <button type="submit" class="btn btn-outline-danger">Logout</button>
-                </form>
+            <div class="ms-auto">
+
+                <div class="d-flex align-items-center border border-secondary rounded px-2 py-1">
+
+                    <i class="fas fa-user fa-me text-white me-2"></i>
+
+                    <span class="navbar-text text-white me-3">
+                        ${request.remoteUser}
+                    </span>
+
+                    <form action="/api/logout" method="post" class="m-0">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                    </form>
+
+                </div>
             </div>
         </div>
     </nav>
