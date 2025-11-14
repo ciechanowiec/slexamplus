@@ -56,7 +56,7 @@
         <!-- ====================================================================== -->
         <dependency>
             <groupId>eu.ciechanowiec</groupId>
-            <artifactId>sling.rocket.commons</artifactId>
+            <artifactId>sling.rocket.engine</artifactId>
         </dependency>
         <dependency>
             <groupId>eu.ciechanowiec</groupId>
