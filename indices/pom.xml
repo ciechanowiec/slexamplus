@@ -18,7 +18,6 @@
 
     <properties>
         <validRoot>/oak:index</validRoot>
-        <filterRoot>${validRoot}/chatID</filterRoot>
     </properties>
 
     <build>
@@ -38,7 +37,7 @@
                     </validatorsSettings>
                     <filters>
                         <filter>
-                            <root>${filterRoot}</root>
+                            <root>${validRoot}/chatID</root>
                             <mode>replace</mode>
                         </filter>
                     </filters>

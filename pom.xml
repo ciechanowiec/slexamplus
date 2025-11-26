@@ -73,6 +73,26 @@
                         <password>${sling.password}</password>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.jackrabbit</groupId>
+                    <artifactId>filevault-package-maven-plugin</artifactId>
+                    <configuration>
+                        <validatorsSettings>
+                            <jackrabbit-nodetypes>
+                                <options>
+                                    <cnds>tccl:SLING-INF/notetypes/nodetypes.cnd</cnds>
+                                </options>
+                            </jackrabbit-nodetypes>
+                        </validatorsSettings>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>eu.ciechanowiec</groupId>
+                            <artifactId>slexamplus.bundle</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>

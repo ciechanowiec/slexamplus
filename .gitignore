@@ -14,6 +14,7 @@ node_modules
 .DS_Store
 /secrets/*
 !secrets/.gitkeep
+.terraform/
 # Compiled documentation:
 README.html
 README.pdf
