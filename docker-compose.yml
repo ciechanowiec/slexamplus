@@ -30,12 +30,10 @@ services:
         host_ip: 127.0.0.1
         published: 8080
         protocol: tcp
-        mode: host
       - target: 8081
         host_ip: 127.0.0.1
         published: 8081
         protocol: tcp
-        mode: host
     labels:
       - "docker-volume-backup.stop-during-backup=false"
       - "docker-volume-backup.archive-pre=/bin/sh -c '/opt/sling/dump-rocket-data.sh'"
@@ -76,9 +74,9 @@ services:
 
   rocket-nginx:
     environment:
-      DOMAIN: ciechanowiec.hopto.org
+      DOMAIN: ${DOMAIN:-localhost}
       EMAIL: herman@ciechanowiec.eu
-      IS_STAGING_ENV: true
+      IS_STAGING_ENV: ${IS_STAGING_ENV:-true}
     image: ciechanowiec/rocket-nginx:20.0.0-SNAPSHOT
     container_name: rocket-nginx
     hostname: rocket-nginx
@@ -88,11 +86,9 @@ services:
       - target: 80
         published: 80
         protocol: tcp
-        mode: host
       - target: 443
         published: 443
         protocol: tcp
-        mode: host
 
 volumes:
   rocket-data-raw:
