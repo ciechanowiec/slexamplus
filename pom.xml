@@ -85,13 +85,6 @@
                             </jackrabbit-nodetypes>
                         </validatorsSettings>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>eu.ciechanowiec</groupId>
-                            <artifactId>slexamplus.bundle</artifactId>
-                            <version>${project.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
