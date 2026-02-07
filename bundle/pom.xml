@@ -210,6 +210,7 @@ Sling-Nodetypes: SLING-INF/notetypes/nodetypes.cnd
 -plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin,org.apache.sling.bnd.models.ModelsScannerPlugin
 
 -contract: !JavaServlet,*
+-fixupmessages.privateexport: "*"; restrict:=warning; is:=error
                                 ]]></bnd>
                         </configuration>
                     </execution>
