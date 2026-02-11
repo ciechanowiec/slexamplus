@@ -1,0 +1,5 @@
+{
+  "sling.default.parameter.encoding": "UTF-8",
+  "file.max": 1000000,
+  "request.max": 1000000
+}
