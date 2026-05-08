@@ -11,22 +11,28 @@
 :toc: left
 :toclevels: 5
 :icons: font
-// Docinfo is used for foldable TOC.
-// -> For full usage example see https://github.com/remkop/picocli
 :docinfo: shared,private
 :linkcss:
+:sourcedir: {docdir}
+:pdf-theme: {sourcedir}/docs/themes/basic.yml
 :stylesdir: https://www.ciechanowiec.eu/linux_mantra/
 :stylesheet: adoc-css-style.css
+:!table-caption:
+:!figure-caption:
 
 == Overview
 
-_Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an example application for the https://github.com/ciechanowiec/sling_rocket[Sling Rocket] framework. It demonstrates various features that a business application for Sling Rocket can utilize and can serve as a template for similar applications. Among others, the features presented in _Slexamplus_ include:
+++++
+<!-- vale off -->
+++++
+_Slexamplus_ (the name stands for +"+*Sl*+ing"+ and +"+*exampl*+e"+) is an example application for the https://github.com/ciechanowiec/sling_rocket[Sling Rocket] framework. It demonstrates various features that a business application for Sling Rocket can use and can serve as a template for similar applications. Among others, the features presented in _Slexamplus_ include:
+++++
+<!-- vale on -->
+++++
 
-[upperalpha]
 . Packaging a business application into a single deployable artifact.
 . Deploying content to the `/apps` path in JCR.
 . Java logic:
-[upperroman]
 .. OSGi unary and factory configurations.
 .. Dynamic OSGi service relationships.
 .. Accessing JCR via `eu.ciechanowiec.sling.rocket.commons.ResourceAccess`.
@@ -68,6 +74,59 @@ Deploy only the `bundle` module of _Slexamplus_ into the Sling Rocket framework:
 ----
 mvn clean install -P installBundle
 ----
+
+== About the Document
+
+This document uses https://asciidoc.org[AsciiDoc^] markup language and resides in the project repository.
+
+=== Export
+. To export the document to the supported output formats, install the following tools:
+.. https://asciidoctor.org/#installation[Asciidoctor^]
+.. https://docs.asciidoctor.org/pdf-converter/latest/install/[Asciidoctor PDF^]
+.. https://pandoc.org/installing.html[Pandoc^]
+. To export to HTML:
++
+[source,bash]
+----
+asciidoctor --attribute allow-uri-read README.adoc
+----
+. To export to PDF:
++
+[source,bash]
+----
+asciidoctor-pdf --attribute allow-uri-read --require ./docs/lib/auto-list-style.rb README.adoc
+----
+. To export to DOCX - Asciidoctor converts the document to DocBook XML, which Pandoc then converts to DOCX:
++
+[source,bash]
+----
+asciidoctor --backend docbook --attribute allow-uri-read --out-file - README.adoc | pandoc --from docbook --to docx --output README.docx
+----
+
+=== Linting
+
+==== General Rules
+. https://vale.sh[Vale^] lints the document.
+. Vale enforces the following style guides:
+.. Native https://vale.sh/docs/styles#vale[Vale style^], with https://github.com/vale-cli/en_US-web/tree/master[English dictionary] included.
+.. modified https://developers.google.com/style[Google Developer Documentation Style Guide^] via the https://github.com/vale-cli/Google[Google package^]
+.. modified https://vale.sh/hub/jdkato/write-good/[write-good linter^] via the https://github.com/vale-cli/write-good[write-good package^]
+.. https://github.com/amperser/proselint/[proselint^] via the https://github.com/vale-cli/proselint[proselint package^]
+.. custom project rules
+. Vale configuration is in `link:.vale.ini[]`.
+
+==== Usage
+. Install Vale as described in the https://vale.sh/docs/install/[official documentation].
+. Lint the document:
++
+[source,bash]
+----
+vale README.adoc
+----
+
+++++
+<!-- vale off -->
+++++
 
 == License
 The program is subject to MIT No Attribution License

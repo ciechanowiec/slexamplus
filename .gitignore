@@ -5,8 +5,6 @@ repo.xml
 *.logs*
 logs
 log
-!eu.ciechanowiec.sling.rocket*log*
-!org.apache.sling*log*
 .idea
 .vscode
 target
@@ -15,8 +13,10 @@ node_modules
 .terraform/
 *.tfstate.backup
 *.drawio.png.bkp
-/secrets/*
-!secrets/.gitkeep
-# Compiled documentation:
-README.html
-README.pdf
+*.drawio.png.dtmp
+README*.pdf
+README*.html
+README*.docx
+claude/settings.local.json
+!eu.ciechanowiec.sling.rocket*log*
+!org.apache.sling*log*
