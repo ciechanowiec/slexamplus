@@ -20,6 +20,7 @@
 
     <modules>
         <module>all</module>
+        <module>accesscontrol</module>
         <module>application</module>
         <module>bundle</module>
         <module>indices</module>

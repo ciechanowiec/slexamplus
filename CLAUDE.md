@@ -18,7 +18,7 @@ mvn clean install -P installBundle      # build + hot-deploy ONLY the Java bundl
 mvn clean install                       # build all modules, do not deploy
 ```
 
-Per-module install profile (each content-package module has its own): `mvn clean install -P installPackageSeparately` from inside `application/`, `indices/`, `osgiconfig/`, or `static-content/` deploys just that module.
+Per-module install profile (each content-package module has its own): `mvn clean install -P installPackageSeparately` from inside `accesscontrol/`, `application/`, `indices/`, `osgiconfig/`, or `static-content/` deploys just that module.
 
 ## Tests, coverage, and static analysis
 
@@ -49,7 +49,8 @@ This is a multi-module Maven build (`<packaging>pom</packaging>` at root). Each 
 | `osgiconfig/` | `content-package` | OSGi `.cfg.json` configs (including factory configs `~name.cfg.json` and the repoinit configuration) under `/apps/slexamplus/osgiconfig/config`. |
 | `indices/` | `content-package` | Oak JCR index definitions under `/_oak_index`. |
 | `static-content/` | `content-package` | Binary/static JCR content (images, audio, video) deployed via the bundle's `SLING-INF/` mechanism. |
-| `all/` | `content-package` (type `container`) | Aggregator: embeds the other five modules into a single deployable package at `/apps/slexamplus/install`. Also runs `sling-feature-converter-maven-plugin` to produce a Sling Feature artifact. |
+| `accesscontrol/` | `content-package` | YAML configurations for the Netcentric [AC Tool](https://opensource.adobe.com/accesscontroltool/) under `/apps/slexamplus/accesscontrol`. Picked up via the OSGi config `biz.netcentric.cq.tools.actool.impl.AcInstallationServiceImpl.cfg.json` in `osgiconfig/`. |
+| `all/` | `content-package` (type `container`) | Aggregator: embeds the other modules into a single deployable package at `/apps/slexamplus/install`. Also runs `sling-feature-converter-maven-plugin` to produce a Sling Feature artifact. |
 
 Everything lives under the JCR root `/apps/slexamplus` (the `validRoot` enforced by `jackrabbit-filter` validators in each module's POM). Touching anything outside that root will fail the build.
 
@@ -69,6 +70,12 @@ OSGi configurations land in `osgiconfig/jcr_root/apps/slexamplus/osgiconfig/conf
 - Factory configs use the `pid~instance.cfg.json` naming (e.g., `FactoryProvider~uno.cfg.json`, `FactoryProvider~duo.cfg.json`).
 - Repoinit statements live in `org.apache.sling.jcr.repoinit.RepositoryInitializer~slexamplus.config` and are what create service users, ACLs, and bootstrap nodes on first boot.
 - Logger setup is two factory configs: `LogManager.factory.config~slexamplus` (logger) + `LogManager.factory.writer~slexamplus` (writer).
+- AC Tool reads its YAML configs from the JCR path declared in `biz.netcentric.cq.tools.actool.impl.AcInstallationServiceImpl.cfg.json` — currently `/apps/slexamplus/accesscontrol`. The Sling Rocket parent ships the AC Tool bundle, service user (`actool-service`), and event queue; downstream projects extend by adding YAML files to the `accesscontrol/` module.
+- AC Tool is applied via **two complementary triggers**:
+  1. **Install hook** — `accesscontrol/pom.xml` declares `installhook.actool.class` so AC Tool fires every time the package is installed (reads YAMLs from the package itself). Covers iterative redeploys against a running container.
+  2. **Startup hook** — Sling Rocket ships the `accesscontroltool-startuphook-bundle` with `activationMode=ALWAYS` (OSGi PID `…AcToolStartupHookServiceImpl`). Fires on every container boot, reading YAMLs from JCR. Covers cold-boot scenarios (persisted JCR, cloud image deploys).
+- The `accesscontrol/` module uses `packageType=application`. Install hooks are normally forbidden in application packages (AEMaaCS doesn't honour them), so both `accesscontrol/pom.xml` and `all/pom.xml` set the validator option `jackrabbit-packagetype/allowInstallHooksInApplicationPackages=true` — a targeted relaxation rather than dropping to the legacy `mixed` type.
+- AC Tool skips re-applying when the YAML files are unchanged: both the install hook and the startup hook call `AcInstallationService.apply(..., skipIfConfigUnchanged=true)`, which short-circuits via an MD5 over all YAMLs. Out-of-band JCR mutations (manual `/crx/de` edits, ACEs overwritten by other packages) are *not* auto-corrected on container restart. To force a re-apply: `curl -u admin:admin -X POST "http://localhost:8080/system/console/jmx/biz.netcentric.cq.tools%3Atype%3DACTool/op/apply/"`, or use the Touch UI at `/apps/netcentric/actool.html`, or edit any YAML so the MD5 changes.
 
 ## Documentation
 

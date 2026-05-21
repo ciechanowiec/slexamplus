@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>eu.ciechanowiec</groupId>
+        <artifactId>slexamplus</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>slexamplus.accesscontrol</artifactId>
+    <packaging>content-package</packaging>
+
+    <name>Slexamplus - Access Control (AC Tool)</name>
+    <description>YAML configurations for the Netcentric Access Control Tool</description>
+
+    <properties>
+        <validRoot>/apps/slexamplus</validRoot>
+        <filterRoot>${validRoot}/accesscontrol</filterRoot>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <configuration>
+                    <packageType>application</packageType>
+                    <properties>
+                        <installhook.actool.class>biz.netcentric.cq.tools.actool.installhook.AcToolInstallHook</installhook.actool.class>
+                    </properties>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <options>
+                                <validRoots>${validRoot}</validRoots>
+                            </options>
+                        </jackrabbit-filter>
+                        <jackrabbit-packagetype>
+                            <options>
+                                <allowInstallHooksInApplicationPackages>true</allowInstallHooksInApplicationPackages>
+                            </options>
+                        </jackrabbit-packagetype>
+                    </validatorsSettings>
+                    <filters>
+                        <filter>
+                            <root>${filterRoot}</root>
+                            <mode>replace</mode>
+                        </filter>
+                    </filters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>installPackageSeparately</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.wcm.maven.plugins</groupId>
+                        <artifactId>wcmio-content-package-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>install-all</id>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

@@ -38,6 +38,11 @@
                                 <validRoots>${validRoot}</validRoots>
                             </options>
                         </jackrabbit-filter>
+                        <jackrabbit-packagetype>
+                            <options>
+                                <allowInstallHooksInApplicationPackages>true</allowInstallHooksInApplicationPackages>
+                            </options>
+                        </jackrabbit-packagetype>
                     </validatorsSettings>
                     <filters>
                         <filter>
@@ -46,6 +51,10 @@
                         </filter>
                     </filters>
                     <embeddeds>
+                        <embedded>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>slexamplus.accesscontrol</artifactId>
+                        </embedded>
                         <embedded>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>slexamplus.application</artifactId>
@@ -98,6 +107,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>slexamplus.accesscontrol</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>slexamplus.application</artifactId>

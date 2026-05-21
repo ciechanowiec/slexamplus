@@ -1,0 +1,22 @@
+- user_config:
+    - slexamplus-reader:
+        - name: "Slexamplus Reader"
+          description: "Slexamplus system user with read-only access to Slexamplus content"
+          path: /home/users/system/slexamplus-users
+          isSystemUser: true
+          isMemberOf: [ slexamplus-content-readers ]
+
+- group_config:
+    - slexamplus-content-readers:
+        - name: "Slexamplus Content Readers"
+          description: "Read-only access to Slexamplus content (example AC Tool config)"
+          path: /home/groups/slexamplus
+          isMemberOf: [ ]
+
+- ace_config:
+    - slexamplus-content-readers:
+        - path: /content/slexamplus-page
+          initialContent: |
+            <jcr:root jcr:primaryType="nt:unstructured"/>
+          permission: allow
+          privileges: jcr:read
