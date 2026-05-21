@@ -13,14 +13,16 @@ import org.osgi.service.component.propertytypes.ServiceDescription;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.Session;
+
 import jakarta.servlet.Servlet;
+
 import java.io.Writer;
 import java.util.Optional;
 import java.util.StringJoiner;
 
 @Component(
-        service = {JCRListServlet.class, Servlet.class},
-        immediate = true
+    service = {JCRListServlet.class, Servlet.class},
+    immediate = true
 )
 @ServiceDescription("Lists nodes on the first level of the JCR repository with the use of JCR API")
 @SlingServletPaths("/jcr-list")
@@ -31,8 +33,10 @@ public class JCRListServlet extends SlingJakartaSafeMethodsServlet {
     @SneakyThrows
     @Override
     protected void doGet(
-            @SuppressWarnings("NullableProblems") SlingJakartaHttpServletRequest request,
-            @SuppressWarnings("NullableProblems") SlingJakartaHttpServletResponse response
+        @SuppressWarnings("NullableProblems")
+        SlingJakartaHttpServletRequest request,
+        @SuppressWarnings("NullableProblems")
+        SlingJakartaHttpServletResponse response
     ) {
         log.info("Listing nodes on the first level of the JCR repository");
         StringJoiner childrenPaths = new StringJoiner("\n");

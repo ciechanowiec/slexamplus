@@ -12,12 +12,13 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import jakarta.servlet.Servlet;
+
 import java.io.IOException;
 import java.io.Writer;
 
 @Component(
-        service = {Servlet.class, DedicatedRRServlet.class},
-        immediate = true
+    service = {Servlet.class, DedicatedRRServlet.class},
+    immediate = true
 )
 @ServiceDescription("Writes to the repository with the use of a dedicated resource resolver")
 @SlingServletPaths("/dedicated-rr")
@@ -29,8 +30,8 @@ public class DedicatedRRServlet extends SlingJakartaSafeMethodsServlet {
 
     @Activate
     public DedicatedRRServlet(
-            @Reference(cardinality = ReferenceCardinality.MANDATORY)
-            Counter counter
+        @Reference(cardinality = ReferenceCardinality.MANDATORY)
+        Counter counter
     ) {
         this.counter = counter;
     }

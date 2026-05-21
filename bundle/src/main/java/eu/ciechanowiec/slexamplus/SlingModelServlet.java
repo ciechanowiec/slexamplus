@@ -13,13 +13,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import jakarta.servlet.Servlet;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Optional;
 
 @Component(
-        service = {Servlet.class, SlingModelServlet.class},
-        immediate = true
+    service = {Servlet.class, SlingModelServlet.class},
+    immediate = true
 )
 @ServiceDescription("Provides an HTTP response with the use of a Sling Model")
 @SlingServletPaths("/sling-model")
@@ -30,14 +31,16 @@ public class SlingModelServlet extends SlingJakartaSafeMethodsServlet {
     @Override
     protected void doGet(SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response)
         throws IOException {
-        try (ResourceResolver resourceResolver = request.getResourceResolver();
-             Writer responseWriter = response.getWriter()) {
+        try (
+            ResourceResolver resourceResolver = request.getResourceResolver();
+            Writer responseWriter = response.getWriter()
+        ) {
             Resource resource = Optional.ofNullable(resourceResolver.getResource("/apps/slexamplus/application"))
-                    .orElseThrow();
+                .orElseThrow();
             UsualModel usualModel = Optional.ofNullable(resource.adaptTo(UsualModel.class))
-                    .orElseThrow();
+                .orElseThrow();
             RecordModel recordModel = Optional.ofNullable(resource.adaptTo(RecordModel.class))
-                    .orElseThrow();
+                .orElseThrow();
             String usualString = usualModel.toString();
             String recordString = recordModel.toString();
             String finalString = String.format("%s<br>%s", usualString, recordString);

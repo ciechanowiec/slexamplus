@@ -12,9 +12,9 @@ import java.util.concurrent.atomic.AtomicReference;
  * Default implementation of {@link MyCustomMBean}.
  */
 @Component(
-        service = MyCustomMBean.class,
-        immediate = true,
-        property = "jmx.objectname=eu.ciechanowiec.slexamplus:type=Slexamplus,name=MyCustomMBean"
+    service = MyCustomMBean.class,
+    immediate = true,
+    property = "jmx.objectname=eu.ciechanowiec.slexamplus:type=Slexamplus,name=MyCustomMBean"
 )
 @Slf4j
 public class MyCustomMBeanImpl extends AnnotatedStandardMBean implements MyCustomMBean {

@@ -8,10 +8,10 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface EnvVarServletConfig {
 
     @AttributeDefinition(
-            name = "Environmental Variable",
-            description = "Value of the environmental variable",
-            defaultValue = "unspecified",
-            type = AttributeType.STRING
+        name = "Environmental Variable",
+        description = "Value of the environmental variable",
+        defaultValue = "unspecified",
+        type = AttributeType.STRING
     )
     String env$_$variable() default "unspecified";
 }

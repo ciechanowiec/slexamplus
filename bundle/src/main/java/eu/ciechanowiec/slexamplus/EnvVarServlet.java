@@ -13,20 +13,21 @@ import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
 import jakarta.servlet.Servlet;
+
 import java.io.IOException;
 import java.io.Writer;
 
 @Component(
-        service = {Servlet.class, EnvVarServlet.class},
-        immediate = true,
-        configurationPolicy = ConfigurationPolicy.REQUIRE
+    service = {Servlet.class, EnvVarServlet.class},
+    immediate = true,
+    configurationPolicy = ConfigurationPolicy.REQUIRE
 )
 @ServiceDescription("Shows an environmental variable supplied in the configuration")
 @SlingServletPaths("/env-var")
 @SuppressWarnings("squid:S1948")
 @Slf4j
 @Designate(
-        ocd = EnvVarServletConfig.class
+    ocd = EnvVarServletConfig.class
 )
 public class EnvVarServlet extends SlingJakartaSafeMethodsServlet {
 

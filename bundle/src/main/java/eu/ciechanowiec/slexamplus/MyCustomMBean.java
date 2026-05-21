@@ -23,7 +23,11 @@ public interface MyCustomMBean {
      * @param message message that should be used by this service
      */
     @Description("Set the message used by this service")
-    void updateMessage(@Name("message") @Description("Message that should be used by this service") String message);
+    void updateMessage(
+        @Name("message")
+        @Description("Message that should be used by this service")
+        String message
+    );
 
     /**
      * Perform an action with the input.
@@ -32,5 +36,9 @@ public interface MyCustomMBean {
      * @return the result of the action
      */
     @Description("Perform an action with the input")
-    String performAction(@Name("input") @Description("Input for the action") String input);
+    String performAction(
+        @Name("input")
+        @Description("Input for the action")
+        String input
+    );
 }

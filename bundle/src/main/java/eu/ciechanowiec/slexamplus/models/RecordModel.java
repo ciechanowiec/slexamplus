@@ -9,18 +9,19 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 @Model(
-        adaptables = {Resource.class, SlingJakartaHttpServletRequest.class},
-        defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED
+    adaptables = {Resource.class, SlingJakartaHttpServletRequest.class},
+    defaultInjectionStrategy = DefaultInjectionStrategy.REQUIRED
 )
 public record RecordModel(
-        @ValueMapValue(name = JcrConstants.JCR_PRIMARYTYPE)
-        @Default(values = JcrConstants.NT_UNSTRUCTURED)
-        String primaryType,
-        @ValueMapValue(name = "customProperty")
-        @Default(values = "Default value for a custom property")
-        String customProperty,
-        @ValueMapValue(name = "nonExistentProperty")
-        @Default(values = "Default value for a non-existent property")
-        String nonExistentProperty
+    @ValueMapValue(name = JcrConstants.JCR_PRIMARYTYPE)
+    @Default(values = JcrConstants.NT_UNSTRUCTURED)
+    String primaryType,
+    @ValueMapValue(name = "customProperty")
+    @Default(values = "Default value for a custom property")
+    String customProperty,
+    @ValueMapValue(name = "nonExistentProperty")
+    @Default(values = "Default value for a non-existent property")
+    String nonExistentProperty
 ) {
+
 }

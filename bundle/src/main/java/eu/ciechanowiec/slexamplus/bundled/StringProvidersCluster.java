@@ -10,12 +10,12 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Component(
-        service = StringProvidersCluster.class,
-        immediate = true,
-        configurationPolicy = ConfigurationPolicy.REQUIRE
+    service = StringProvidersCluster.class,
+    immediate = true,
+    configurationPolicy = ConfigurationPolicy.REQUIRE
 )
 @Designate(
-        ocd = StringProvidersClusterConfig.class
+    ocd = StringProvidersClusterConfig.class
 )
 @ToString
 @Slf4j
@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 public class StringProvidersCluster {
 
     @Reference(
-            cardinality = ReferenceCardinality.AT_LEAST_ONE,
-            policy = ReferencePolicy.DYNAMIC,
-            policyOption = ReferencePolicyOption.GREEDY
+        cardinality = ReferenceCardinality.AT_LEAST_ONE,
+        policy = ReferencePolicy.DYNAMIC,
+        policyOption = ReferencePolicyOption.GREEDY
     )
     @ToString.Exclude
     private final Collection<StringProvider> stringProviders;
@@ -46,8 +46,8 @@ public class StringProvidersCluster {
 
     public String combinedStrings() {
         return stringProviders.stream()
-                              .map(StringProvider::provide)
-                              .sorted()
-                              .collect(Collectors.joining(delimiter));
+            .map(StringProvider::provide)
+            .sorted()
+            .collect(Collectors.joining(delimiter));
     }
 }

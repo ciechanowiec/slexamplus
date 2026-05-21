@@ -14,26 +14,27 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import jakarta.servlet.Servlet;
+
 import java.io.Writer;
 
 @Component(
-        service = {ResourceTypeServlet.class, Servlet.class},
-        immediate = true
+    service = {ResourceTypeServlet.class, Servlet.class},
+    immediate = true
 )
 @ServiceDescription("Outputs the resource as a red string")
 @SuppressWarnings("squid:S1948")
 @Slf4j
 @SlingServletResourceTypes(
-        methods = HttpConstants.METHOD_GET,
-        extensions = "red",
-        resourceTypes = ServletResolverConstants.DEFAULT_RESOURCE_TYPE
+    methods = HttpConstants.METHOD_GET,
+    extensions = "red",
+    resourceTypes = ServletResolverConstants.DEFAULT_RESOURCE_TYPE
 )
 public class ResourceTypeServlet extends SlingJakartaSafeMethodsServlet {
 
     @SneakyThrows
     @Override
     protected void doGet(
-            SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
+        SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
     ) {
         Resource resource = request.getResource();
         String resourceString = resource.toString();

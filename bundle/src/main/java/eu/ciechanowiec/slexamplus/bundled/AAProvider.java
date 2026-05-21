@@ -4,8 +4,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceRanking;
 
 @Component(
-        service = StringProvider.class,
-        immediate = true
+    service = StringProvider.class,
+    immediate = true
 )
 @ServiceRanking(Integer.MIN_VALUE)
 @SuppressWarnings("TypeName")

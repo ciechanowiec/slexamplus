@@ -26,8 +26,8 @@ import java.util.UUID;
 import java.util.stream.IntStream;
 
 @Component(
-        service = {Servlet.class, GeneratorServlet.class},
-        immediate = true
+    service = {Servlet.class, GeneratorServlet.class},
+    immediate = true
 )
 @ServiceDescription("Writes to the repository with the use of a dedicated resource resolver")
 @SlingServletPaths("/generator")
@@ -39,8 +39,8 @@ public class GeneratorServlet extends SlingJakartaSafeMethodsServlet {
 
     @Activate
     public GeneratorServlet(
-            @Reference(cardinality = ReferenceCardinality.MANDATORY)
-            ResourceAccess resourceAccess
+        @Reference(cardinality = ReferenceCardinality.MANDATORY)
+        ResourceAccess resourceAccess
     ) {
         this.resourceAccess = resourceAccess;
     }
@@ -51,8 +51,8 @@ public class GeneratorServlet extends SlingJakartaSafeMethodsServlet {
         throws IOException {
         try (ResourceResolver resourceResolver = resourceAccess.acquireAccess()) {
             Resource resource = ResourceUtil.getOrCreateResource(
-                    resourceResolver, "/content/generated",
-                    Map.of(JcrConstants.JCR_PRIMARYTYPE, JcrResourceConstants.NT_SLING_FOLDER), null, true
+                resourceResolver, "/content/generated",
+                Map.of(JcrConstants.JCR_PRIMARYTYPE, JcrResourceConstants.NT_SLING_FOLDER), null, true
             );
 
             IntStream.rangeClosed(1, 1000).forEach(num -> create(resource, resourceResolver));
@@ -68,10 +68,12 @@ public class GeneratorServlet extends SlingJakartaSafeMethodsServlet {
     private void create(Resource parent, ResourceResolver resourceResolver) {
         String nodeName = UUID.randomUUID().toString();
         String chatID = UUID.randomUUID().toString();
-        Resource createdResource = resourceResolver.create(parent, nodeName, Map.of(
+        Resource createdResource = resourceResolver.create(
+            parent, nodeName, Map.of(
                 JcrConstants.JCR_PRIMARYTYPE, JcrResourceConstants.NT_SLING_FOLDER,
                 "chatID", chatID
-        ));
+            )
+        );
         log.info("Created resource: {}", createdResource);
     }
 }

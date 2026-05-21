@@ -12,11 +12,12 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 
 import jakarta.servlet.Servlet;
+
 import java.io.Writer;
 
 @Component(
-        service = {StringProvidersClusterServlet.class, Servlet.class},
-        immediate = true
+    service = {StringProvidersClusterServlet.class, Servlet.class},
+    immediate = true
 )
 @SlingServletPaths("/clustered-string")
 @SuppressWarnings({"squid:S1948", "TypeName"})
@@ -27,8 +28,8 @@ public class StringProvidersClusterServlet extends SlingJakartaSafeMethodsServle
 
     @Activate
     public StringProvidersClusterServlet(
-            @Reference(cardinality = ReferenceCardinality.MANDATORY)
-            StringProvidersCluster cluster
+        @Reference(cardinality = ReferenceCardinality.MANDATORY)
+        StringProvidersCluster cluster
     ) {
         this.cluster = cluster;
     }
@@ -36,8 +37,8 @@ public class StringProvidersClusterServlet extends SlingJakartaSafeMethodsServle
     @SneakyThrows
     @Override
     protected void doGet(
-            @SuppressWarnings("NullableProblems")
-            SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
+        @SuppressWarnings("NullableProblems")
+        SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
     ) {
         String combinedStrings = cluster.combinedStrings();
         log.info("Will provide these combined strings: {}", combinedStrings);

@@ -11,13 +11,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import jakarta.servlet.Servlet;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
 @Component(
-        service = {Servlet.class, ExternalDependencyServlet.class},
-        immediate = true
+    service = {Servlet.class, ExternalDependencyServlet.class},
+    immediate = true
 )
 @ServiceDescription("Provides an HTTP response with the use of an external library")
 @SlingServletPaths("/external-dependency")
@@ -27,13 +28,13 @@ public class ExternalDependencyServlet extends SlingJakartaSafeMethodsServlet {
 
     @Override
     protected void doGet(
-            @SuppressWarnings("NullableProblems")
-            SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
+        @SuppressWarnings("NullableProblems")
+        SlingJakartaHttpServletRequest request, SlingJakartaHttpServletResponse response
     ) throws IOException {
         String originalText = "I'm the text provided with the use of an external library";
         String extractedText = Conditional.conditional(true)
-                                          .onTrue(() -> originalText)
-                                          .get(String.class);
+            .onTrue(() -> originalText)
+            .get(String.class);
         response.setContentType(MediaType.TEXT_HTML);
         try (Writer responseWriter = response.getWriter()) {
             responseWriter.write(Objects.requireNonNull(extractedText));

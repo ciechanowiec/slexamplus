@@ -10,13 +10,13 @@ import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.Designate;
 
 @Component(
-        service = StringProvider.class,
-        immediate = true,
-        configurationPolicy = ConfigurationPolicy.REQUIRE
+    service = StringProvider.class,
+    immediate = true,
+    configurationPolicy = ConfigurationPolicy.REQUIRE
 )
 @Designate(
-        ocd = FactoryProviderConfig.class,
-        factory = true
+    ocd = FactoryProviderConfig.class,
+    factory = true
 )
 @ToString
 @Slf4j

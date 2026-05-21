@@ -9,10 +9,10 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface StringProvidersClusterConfig {
 
     @AttributeDefinition(
-            name = "String Delimiter",
-            description = "The delimiter will be used to combine strings",
-            defaultValue = "###",
-            type = AttributeType.STRING
+        name = "String Delimiter",
+        description = "The delimiter will be used to combine strings",
+        defaultValue = "###",
+        type = AttributeType.STRING
     )
     String delimiter() default "###";
 }

@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component(
-        service = Counter.class,
-        immediate = true
+    service = Counter.class,
+    immediate = true
 )
 public class Counter {
 
@@ -25,8 +25,8 @@ public class Counter {
 
     @Activate
     public Counter(
-            @Reference(cardinality = ReferenceCardinality.MANDATORY)
-            ResourceAccess repositoryAccess
+        @Reference(cardinality = ReferenceCardinality.MANDATORY)
+        ResourceAccess repositoryAccess
     ) {
         this.repositoryAccess = repositoryAccess;
     }
@@ -35,10 +35,10 @@ public class Counter {
     int incrementByOne() {
         try (ResourceResolver resourceResolver = repositoryAccess.acquireAccess()) {
             Resource resource = ResourceUtil.getOrCreateResource(
-                    resourceResolver, "/content", Map.of(), null, true
+                resourceResolver, "/content", Map.of(), null, true
             );
             ModifiableValueMap modifiableValueMap = Optional.ofNullable(resource.adaptTo(ModifiableValueMap.class))
-                                                            .orElseThrow();
+                .orElseThrow();
             String propertyName = "counter";
             int propertyValue = modifiableValueMap.get(propertyName, NumberUtils.INTEGER_ZERO);
             int newPropertyValue = propertyValue + NumberUtils.INTEGER_ONE;

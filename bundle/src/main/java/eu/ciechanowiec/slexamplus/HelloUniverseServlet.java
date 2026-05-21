@@ -14,12 +14,13 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import jakarta.servlet.Servlet;
+
 import java.io.IOException;
 import java.io.Writer;
 
 @Component(
-        service = {Servlet.class, HelloUniverseServlet.class},
-        immediate = true
+    service = {Servlet.class, HelloUniverseServlet.class},
+    immediate = true
 )
 @ServiceDescription("Shows a welcome message at a given path")
 @SlingServletPaths("/hello-universe")
@@ -31,8 +32,8 @@ public class HelloUniverseServlet extends SlingJakartaSafeMethodsServlet {
 
     @Activate
     public HelloUniverseServlet(
-            @Reference(cardinality = ReferenceCardinality.MANDATORY)
-            BasicHTMLPage basicHTMLPage
+        @Reference(cardinality = ReferenceCardinality.MANDATORY)
+        BasicHTMLPage basicHTMLPage
     ) {
         log.info("Servlet initialized");
         this.basicHTMLPage = basicHTMLPage;
